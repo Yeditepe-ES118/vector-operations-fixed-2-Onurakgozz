@@ -22,12 +22,16 @@ def total_displacement(v1x, v1y, v2x, v2y, v3x, v3y):
     u = np.array([1/np.sqrt(2), -1/np.sqrt(2)])
 
     vR = v1 + v2 + v3
-    vR = np.round(vR, 3)  
-
     len_vRu = np.abs(np.dot(vR, u))
-    len_vRu = np.round(len_vRu, 3)
 
-    return vR, len_vRu
+    raw_vR = vR
+    raw_len = len_vRu
+
+    rounded_vR = np.round(vR, 3)
+    rounded_len = np.round(len_vRu, 3)
+
+    return raw_vR, raw_len, rounded_vR, rounded_len
+
 
 v1 = np.array([1, 0])
 v2 = np.array([0, 1])
