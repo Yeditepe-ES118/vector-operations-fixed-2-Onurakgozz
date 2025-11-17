@@ -3,9 +3,9 @@ import numpy as np
 def arrays():
     array1 = np.array([-2.33, 100, 20, 33.2])
     array2 = np.array([[30, 12, 2, 70.2], [98.01, 4, 0, 7]])
-    array3 = np.arange(2, 12, 2)
+    array3 = np.arange(2,12,2 ) 
     array4 = np.arange(20, -30, -10)
-    array5 = np.linspace(0, 1, 4)
+    array5 = np.linspace(0,1,4)
     array6 = np.ones((3, 4))
     array7 = np.zeros((2, 3))
     array8 = np.eye(3)
@@ -14,34 +14,26 @@ def arrays():
 
     return array1, array2, array3, array4, array5, array6, array7, array8, array9, array10
 
-
 def total_displacement(v1x, v1y, v2x, v2y, v3x, v3y):
     v1 = np.array([v1x, v1y])
     v2 = np.array([v2x, v2y])
     v3 = np.array([v3x, v3y])
     u = np.array([1/np.sqrt(2), -1/np.sqrt(2)])
-
-    vR = v1 + v2 + v3
-    len_vRu = np.abs(np.dot(vR, u))
-
-    raw_vR = vR
-    raw_len = len_vRu
-
-    rounded_vR = np.round(vR, 3)
-    rounded_len = np.round(len_vRu, 3)
-
-    return raw_vR, raw_len, rounded_vR, rounded_len
-
+    
+    #compute vectors
+    vR = v1 + v2 + v3 # 1-D array
+    vRu = np.dot(vR, u)*u # 1-D array
+    len_vRu = np.sqrt(vRu[0]**2 + vRu[1]**2)
+    return vR, len_vRu
 
 v1 = np.array([1, 0])
 v2 = np.array([0, 1])
 v3 = np.array([1, -1])
-
-sonuclar = arrays()
-for i, arr in enumerate(sonuclar, 1):
-     print(f"--- array{i} ---")
-     print(arr)
-     print()
-
+results = arrays()
+for i, arr in enumerate(results, 1):
+        print(f"--- array{i} ---")
+        print(arr)
+        print()
 displacement = total_displacement(v1[0], v1[1], v2[0], v2[1], v3[0], v3[1])
-print("Vector : ", displacement[0], "Length :", displacement[1])
+
+print("Vector : ", displacement[0],"Lenght :",displacement[1])
